@@ -5,13 +5,14 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const navItems = [
-  { label: 'Dashboard', href: '/(renter)/dashboard', icon: 'dashboard' },
-  { label: 'Browse', href: '/(renter)/browse', icon: 'search' },
-  { label: 'My Orders', href: '/(renter)/orders', icon: 'package' },
-  { label: 'My Cart', href: '/(renter)/cart', icon: 'cart' },
-  { label: 'My Listings', href: '/(lister)/listings', icon: 'list' },
-  { label: 'Requests', href: '/(lister)/requests', icon: 'inbox' },
+  { label: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
+  { label: 'Browse', href: '/browse', icon: 'search' },
+  { label: 'My Orders', href: '/orders', icon: 'package' },
+  { label: 'My Cart', href: '/cart', icon: 'cart' },
+  { label: 'My Listings', href: '/listings', icon: 'list' },
+  { label: 'Requests', href: '/requests', icon: 'inbox' },
 ];
+
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -68,7 +69,8 @@ export function Sidebar() {
     >
       <div className="flex-1 py-6 space-y-2 overflow-y-auto">
         {navItems.map((item) => {
-          const isActive = pathname === item.href || pathname.startsWith(item.href.replace('(', '').replace(')', ''));
+          const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+
           return (
             <Link
               key={item.href}

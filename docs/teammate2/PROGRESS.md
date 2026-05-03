@@ -91,13 +91,19 @@
 
 ---
 
-## Step 6 - [DATE] - [ ] NOT STARTED
-**Status:** ⬜ NOT STARTED  
-**What Was Built:** -  
-**Time Spent:** -  
-**Issues Encountered:** -  
-**Next Step:** Step 7 — Operations + dispute + final polish  
-**Notes:** -
+## Step 6 - 2026-05-03 - [x] COMPLETE
+**Status:** ✅ COMPLETE  
+**What Was Built:**
+- `src/mocks/lister.ts` — Mock lister data: stats, inventory, and booking requests
+- `src/app/(lister)/listings/page.tsx` — S-08 My Listings: Inventory grid with status badges (active/rented) and earnings summary
+- `src/app/(lister)/listings/new/page.tsx` — S-09 Create Listing: 3-step form (Basic Details, Photos/Value, Pricing/Rules)
+- `src/app/(lister)/requests/page.tsx` — S-10 Order Requests: List of incoming requests with renter metrics and accept/reject actions
+- `src/app/(lister)/layout.tsx` — Lister layout integration with Sidebar and Navbar
+**Time Spent:** ~1 session  
+**Issues Encountered:** Route conflict resolved (moved lister screens from (renter) group to (lister) group provided by scaffolding).  
+**Next Step:** Step 7 — Operations + Dispute + Polish  
+**Notes:** Lister flow is fully integrated into the sidebar. Multi-step form handles conditional pricing (weekly/monthly discounts).
+
 
 ---
 
