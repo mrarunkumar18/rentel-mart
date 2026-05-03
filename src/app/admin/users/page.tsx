@@ -14,7 +14,7 @@ import { Search, Users, MoreHorizontal, Ban, UserCheck, ShieldOff } from "lucide
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {
   active: "success",
   suspended: "warning",
-  pending_verify: "info" as "info",
+  pending_verify: "neutral",
   banned: "error",
 };
 

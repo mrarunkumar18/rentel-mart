@@ -13,7 +13,7 @@ import Image from "next/image";
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {
   open: "warning",
   ruled_renter: "success",
-  ruled_owner: "info" as "info",
+  ruled_owner: "neutral",
   escalated: "error",
 };
 
