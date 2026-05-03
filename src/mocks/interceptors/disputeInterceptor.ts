@@ -1,5 +1,6 @@
 import { mockDisputes, mockBookings, mockConditionPhotos, mockProducts, mockUsers, mockBookingPayments } from "../seed";
 import { Dispute, DisputeStatus } from "@/types/database";
+import { DisputeVerdict } from "@/types/admin";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -41,7 +42,7 @@ export const disputeInterceptor = {
     return { data: mapped, total: mapped.length };
   },
 
-  ruleDispute: async (disputeId: string, verdict: string, notes: string, adminId: string): Promise<void> => {
+  ruleDispute: async (disputeId: string, verdict: DisputeVerdict, notes: string, adminId: string): Promise<void> => {
     await delay(500);
     const dispute = mockDisputes.find((d) => d.id === disputeId);
     if (!dispute) throw new Error("Dispute not found");

@@ -7,7 +7,7 @@ import { Button, StatusBadge, PageHeader, Table, Th, Td, Skeleton, EmptyState, u
 import { disputeInterceptor } from "@/mocks/interceptors/disputeInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
 import { useAdminSession } from "@/hooks/useRBAC";
-import { MockDispute } from "@/types/admin";
+import { MockDispute, DisputeVerdict } from "@/types/admin";
 import { ShieldAlert, X, ZoomIn, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 
