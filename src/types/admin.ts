@@ -17,13 +17,19 @@ export interface RBACConfig {
   roles: Record<AdminRole, RoleDefinition>;
 }
 
-export interface CurrentAdminSession {
+export interface AdminAccount {
   id: string;
   name: string;
   email: string;
   role: AdminRole;
+  tier: number;
+  createdAt: string;
+  lastLogin: string;
+  isActive: boolean;
   customPermissions?: Partial<Record<ModuleId, ModuleAction[]>>;
 }
+
+export interface CurrentAdminSession extends Omit<AdminAccount, 'tier' | 'createdAt' | 'lastLogin' | 'isActive'> {}
 
 export interface PaginatedResponse<T> {
   data: T[];

@@ -1,16 +1,5 @@
 import { AdminRole, UserStatus } from "@/types/database";
-
-export interface AdminAccount {
-  id: string;
-  name: string;
-  email: string;
-  role: AdminRole;
-  tier: number;
-  createdAt: string;
-  lastLogin: string;
-  isActive: boolean;
-  customPermissions?: Record<string, string[]>;
-}
+import { AdminAccount } from "@/types/admin";
 
 export const mockAdminAccounts: AdminAccount[] = [
   {
