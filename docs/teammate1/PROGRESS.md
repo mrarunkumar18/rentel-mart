@@ -28,21 +28,37 @@
 
 ---
 
-## Step 2 - [DATE] - [ ] NOT STARTED
+## Step 2 - 2026-05-03 - [x] COMPLETED
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ COMPLETED
 
 **What Was Built:**
-- [List deliverables]
+- SQL migration file: `/supabase/schema/002_remaining_tables.sql` — 9 tables
+  - `bookings` — FK → products, users (renter + lister), status lifecycle, delivery_method
+  - `booking_payments` — FK → bookings (UNIQUE), rent, deposit, fees, payment_plan, total_due
+  - `installments` — FK → bookings, due_date, amount, status, paid_at
+  - `condition_photos` — FK → bookings + users (captured_by), type CHECK (pickup/return)
+  - `disputes` — FK → bookings + users (raised_by, admin_id), verdict, deduction_amount
+  - `payouts` — FK → users (lister) + bookings, gross/deductions/net, hold_until
+  - `delivery_orders` — FK → bookings + users (agent_id), type CHECK (deliver/collect), status lifecycle
+  - `platform_config` — key-value store, FK → users (updated_by)
+  - `admin_roles` — FK → users (UNIQUE), role CHECK, permissions_json JSONB
+- SQL migration file: `/supabase/schema/003_indexes.sql` — 12 performance indexes
+  - bookings: renter_id, lister_id, status, product_id
+  - products: lister_id, status, category
+  - disputes: booking_id, status
+  - payouts: lister_id, status
+  - delivery_orders: booking_id
+- Auto-update triggers on `bookings` and `delivery_orders` tables
 
-**Time Spent:** [H hours, M minutes]
+**Time Spent:** ~30 minutes
 
 **Issues Encountered:**
-- [Issue and resolution]
+- None
 
 **Next Step:** Step 3 — RLS policies
 
-**Notes:** [Context for Phase 4]
+**Notes:** All 13 tables now complete (4 from Step 1 + 9 from Step 2). Reused `update_updated_at_column()` trigger from Step 1. Run files in order: 001 → 002 → 003 in Supabase SQL Editor.
 
 ---
 
