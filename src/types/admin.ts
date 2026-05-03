@@ -50,6 +50,7 @@ export interface MockUser {
   status: UserStatus;
   isVerified: boolean;
   joinedAt: string;
+  totalBookings: number;
 }
 
 export interface MockListing {

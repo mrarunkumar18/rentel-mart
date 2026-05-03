@@ -1,4 +1,4 @@
-import { mockUsers } from "../seed";
+import { mockUsers, mockBookings } from "../seed";
 import { User, UserStatus } from "@/types/database";
 import { MockUser } from "@/types/admin";
 
@@ -35,6 +35,7 @@ export const userInterceptor = {
       ...u,
       isVerified: u.status === 'active', // Simplified mock logic
       joinedAt: u.created_at,
+      totalBookings: mockBookings.filter(b => b.renter_id === u.id).length,
     }));
 
     return {
