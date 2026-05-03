@@ -62,21 +62,39 @@
 
 ---
 
-## Step 3 - [DATE] - [ ] NOT STARTED
+## Step 3 - 2026-05-03 - [x] COMPLETED
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ COMPLETED
 
 **What Was Built:**
-- [List deliverables]
+- SQL migration file: `/supabase/schema/004_rls_policies.sql`
+  - RLS enabled on all 13 tables
+  - 50+ granular policies covering SELECT/INSERT/UPDATE/DELETE per table
+  - **users:** own profile CRUD + admin read/delete
+  - **products:** public read (active), lister CRUD (own), admin full access
+  - **product_pricing / product_images:** inherit from product ownership
+  - **bookings:** renter + lister party read/update, admin full access
+  - **booking_payments:** booking parties read, renter insert, admin update
+  - **installments:** booking parties read, renter insert/update, admin update
+  - **condition_photos:** booking parties read, captured_by insert, admin delete
+  - **disputes:** involved parties + admin read/update, raised_by insert
+  - **payouts:** lister read own, admin full CRUD
+  - **delivery_orders:** agent + booking parties read, agent update, admin full CRUD
+  - **platform_config:** public read, super_admin-only write
+  - **admin_roles:** super_admin-only CRUD + users read own role
+- SQL migration file: `/supabase/schema/005_storage_buckets.sql`
+  - `product-images` bucket — public read, auth upload, 5MB limit, image MIME types
+  - `condition-photos` bucket — private (signed URLs only), auth upload, 5MB limit
+  - Storage-level RLS policies on both buckets
 
-**Time Spent:** [H hours, M minutes]
+**Time Spent:** ~30 minutes
 
 **Issues Encountered:**
-- [Issue and resolution]
+- None
 
 **Next Step:** Step 4 — TypeScript types
 
-**Notes:** [Context for Phase 4]
+**Notes:** Storage bucket SQL uses `storage.buckets` insert — if this doesn't work in the SQL Editor, create buckets manually via Dashboard → Storage. Run order: 001 → 002 → 003 → 004 → 005.
 
 ---
 
