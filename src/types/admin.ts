@@ -118,12 +118,18 @@ export interface MockContent {
 }
 
 export interface AnalyticsData {
-  totalUsers: number;
-  totalUsersWoW: number;
-  activeListings: number;
-  activeListingsWoW: number;
-  openDisputes: number;
-  openDisputesWoW: number;
-  gmv30d: number;
-  gmv30dWoW: number;
+  kpis: {
+    totalUsers: number;
+    totalUsersWoW: number;
+    activeListings: number;
+    activeListingsWoW: number;
+    openDisputes: number;
+    openDisputesWoW: number;
+    gmv30d: number;
+    gmv30dWoW: number;
+  };
+  revenueOverTime: { date: string; value: number }[];
+  bookingsByStatus: { status: string; count: number }[];
+  userGrowth: { date: string; value: number }[];
+  disputeRate: { date: string; value: number }[];
 }
