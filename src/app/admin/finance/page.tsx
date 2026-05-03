@@ -3,9 +3,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
-import { paymentInterceptor } from "@/mock/interceptors/paymentInterceptor";
+import { paymentInterceptor } from "@/mocks/interceptors/paymentInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockPayment } from "@/mock/store/payments.mock";
+import { MockPayment } from "@/mocks/payments.mock";
 import { Search, CreditCard, RotateCcw, Flag } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {

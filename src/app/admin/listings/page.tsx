@@ -3,9 +3,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
-import { listingInterceptor } from "@/mock/interceptors/listingInterceptor";
+import { listingInterceptor } from "@/mocks/interceptors/listingInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockListing } from "@/mock/store/listings.mock";
+import { MockListing } from "@/mocks/listings.mock";
 import { Search, LayoutGrid, CheckCircle, XCircle, Flag, Trash2 } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {

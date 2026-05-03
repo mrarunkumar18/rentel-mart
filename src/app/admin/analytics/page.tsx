@@ -3,8 +3,8 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, PageHeader } from "@/components/admin/ui";
-import { analyticsInterceptor } from "@/mock/interceptors/analyticsInterceptor";
-import { AnalyticsData } from "@/mock/store/analytics.mock";
+import { analyticsInterceptor } from "@/mocks/interceptors/analyticsInterceptor";
+import { AnalyticsData } from "@/types/admin";
 import { RefreshCw, TrendingUp, TrendingDown } from "lucide-react";
 
 const RANGE_OPTIONS = [

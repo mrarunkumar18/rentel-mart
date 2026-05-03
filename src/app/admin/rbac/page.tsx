@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, EmptyState, useToastStore } from "@/components/admin/ui";
 import { useRBAC } from "@/hooks/useRBAC";
-import { mockAdminAccounts, AdminAccount } from "@/mock/store/adminAccounts.mock";
+import { mockAdminAccounts, AdminAccount } from "@/mocks/adminAccounts.mock";
 import { AdminRole } from "@/types/admin";
 import { ShieldCheck, Plus, Pencil, Trash2 } from "lucide-react";
 

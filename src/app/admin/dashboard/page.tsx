@@ -3,11 +3,9 @@
 import { useEffect, useState } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { PageHeader } from "@/components/admin/ui";
-import { analyticsInterceptor } from "@/mock/interceptors/analyticsInterceptor";
-import { AnalyticsData } from "@/mock/store/analytics.mock";
-import { mockDisputes } from "@/mock/store/disputes.mock";
-import { mockUsers } from "@/mock/store/users.mock";
-import { mockBookings } from "@/mock/store/bookings.mock";
+import { analyticsInterceptor } from "@/mocks/interceptors/analyticsInterceptor";
+import { AnalyticsData } from "@/types/admin";
+import { mockDisputes, mockUsers, mockBookings } from "@/mocks/seed";
 import { TrendingUp, TrendingDown, Users, LayoutGrid, ShieldAlert, CreditCard } from "lucide-react";
 import Link from "next/link";
 
@@ -24,14 +22,14 @@ function DashboardContent() {
     return () => clearInterval(timer);
   }, []);
 
-  const openDisputes = mockDisputes.filter(d => d.status === "open").length;
-  const activeUsers = mockUsers.filter(u => u.status === "active").length;
-  const activeBookings = mockBookings.filter(b => b.status === "active").length;
+  const openDisputesCount = mockDisputes.filter(d => d.status !== "resolved").length;
+  const activeUsersCount = mockUsers.filter(u => u.status === "active").length;
+  const activeBookingsCount = mockBookings.filter(b => b.status === "active").length;
 
   const quickStats = [
-    { label: "Active Users", value: activeUsers, icon: Users, href: "/admin/users", color: "text-primary", bg: "bg-accent" },
-    { label: "Active Bookings", value: activeBookings, icon: LayoutGrid, href: "/admin/bookings", color: "text-green-600", bg: "bg-green-50" },
-    { label: "Open Disputes", value: openDisputes, icon: ShieldAlert, href: "/admin/disputes", color: "text-amber-600", bg: "bg-amber-50" },
+    { label: "Active Users", value: activeUsersCount, icon: Users, href: "/admin/users", color: "text-primary", bg: "bg-accent" },
+    { label: "Active Bookings", value: activeBookingsCount, icon: LayoutGrid, href: "/admin/bookings", color: "text-green-600", bg: "bg-green-50" },
+    { label: "Open Disputes", value: openDisputesCount, icon: ShieldAlert, href: "/admin/disputes", color: "text-amber-600", bg: "bg-amber-50" },
     { label: "GMV (30d)", value: kpis ? `₹${(kpis.gmv30d / 100000).toFixed(1)}L` : "…", icon: CreditCard, href: "/admin/analytics", color: "text-purple-600", bg: "bg-purple-50" },
   ];
 
@@ -55,7 +53,6 @@ function DashboardContent() {
         ))}
       </div>
 
-      {/* Quick-access modules */}
       <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-3">Quick Access</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {[

@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
 import { useRBAC } from "@/hooks/useRBAC";
-import { mockContent, MockContent } from "@/mock/store/content.mock";
+import { mockContent, MockContent } from "@/mocks/content.mock";
 import { FileImage, CheckCircle, Trash2, Eye } from "lucide-react";
 import { Modal } from "@/components/admin/ui";
 

@@ -6,9 +6,9 @@ import {
   Button, StatusBadge, PageHeader, Table, Th, Td,
   Modal, Skeleton, EmptyState, useToastStore,
 } from "@/components/admin/ui";
-import { userInterceptor } from "@/mock/interceptors/userInterceptor";
+import { userInterceptor } from "@/mocks/interceptors/userInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockUser } from "@/mock/store/users.mock";
+import { MockUser } from "@/mocks/users.mock";
 import { Search, Users, MoreHorizontal, Ban, UserCheck, ShieldOff } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {
