@@ -1,5 +1,6 @@
 import { mockUsers } from "../seed";
 import { User, UserStatus } from "@/types/database";
+import { MockUser } from "@/types/admin";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -12,7 +13,7 @@ export interface UserFilters {
 
 export const userInterceptor = {
   // ── SWAP POINT: replace with → GET /api/v1/admin/users ──
-  getUsers: async (filters?: UserFilters): Promise<{ data: User[]; total: number }> => {
+  getUsers: async (filters?: UserFilters): Promise<{ data: MockUser[]; total: number }> => {
     await delay(300);
     let result = [...mockUsers];
     
@@ -30,8 +31,14 @@ export const userInterceptor = {
     const page = filters?.page || 1;
     const pageSize = filters?.pageSize || 20;
     
+    const mapped = result.slice((page - 1) * pageSize, page * pageSize).map(u => ({
+      ...u,
+      isVerified: u.status === 'active', // Simplified mock logic
+      joinedAt: u.created_at,
+    }));
+
     return {
-      data: result.slice((page - 1) * pageSize, page * pageSize),
+      data: mapped as MockUser[],
       total: result.length,
     };
   },
@@ -42,7 +49,6 @@ export const userInterceptor = {
     const user = mockUsers.find((u) => u.id === userId);
     if (!user) throw new Error("User not found");
     user.status = "suspended";
-    // In a real app, we'd store the reason in a user_history or status_metadata column
   },
 
   // ── SWAP POINT: replace with → PUT /api/v1/admin/users/:id/ban ──

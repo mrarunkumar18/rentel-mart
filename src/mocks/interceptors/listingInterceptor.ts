@@ -1,10 +1,11 @@
 import { mockProducts, mockUsers, mockProductPricing } from "../seed";
 import { Product, ProductStatus } from "@/types/database";
+import { MockListing } from "@/types/admin";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const listingInterceptor = {
-  getListings: async (filters?: { status?: ProductStatus | "all"; search?: string; page?: number }): Promise<{ data: any[]; total: number }> => {
+  getListings: async (filters?: { status?: ProductStatus | "all"; search?: string; page?: number }): Promise<{ data: MockListing[]; total: number }> => {
     await delay(300);
     let result = [...mockProducts];
     
@@ -24,11 +25,14 @@ export const listingInterceptor = {
       const owner = mockUsers.find(u => u.id === p.lister_id);
       const pricing = mockProductPricing.find(pr => pr.product_id === p.id);
       return {
-        ...p,
+        id: p.id,
+        title: p.title,
         ownerName: owner?.full_name || "Unknown",
+        category: p.category,
         pricePerDay: pricing?.per_day || 0,
-        photos: [ `https://storage.rentify.com/product-images/${p.id}/front.jpg` ],
+        status: p.status,
         location: owner?.city || "Unknown",
+        photos: [ `https://storage.rentify.com/product-images/${p.id}/front.jpg` ],
       };
     });
 
