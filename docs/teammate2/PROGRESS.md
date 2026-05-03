@@ -22,13 +22,21 @@
 
 ---
 
-## Step 2 - [DATE] - [ ] NOT STARTED
-**Status:** ⬜ NOT STARTED  
-**What Was Built:** -  
-**Time Spent:** -  
-**Issues Encountered:** -  
+## Step 2 - 2026-05-03 - [x] COMPLETE
+**Status:** ✅ COMPLETE  
+**What Was Built:**
+- `src/mocks/dashboard.ts` — Mock stats, notifications, and quick actions
+- `src/components/layout/Sidebar.tsx` — Collapsible sidebar with navigation and active state
+- `src/app/(renter)/layout.tsx` — Dashboard layout with Sidebar and Navbar
+- `src/components/dashboard/DashboardStats.tsx` — KPI cards with trend indicators
+- `src/components/dashboard/NotificationsPanel.tsx` — Recent activity feed with read/unread states
+- `src/components/dashboard/QuickActions.tsx` — Grid of shortcuts
+- `src/app/(renter)/dashboard/page.tsx` — S-01 Dashboard with period selector and layout integration
+**Time Spent:** ~1 session  
+**Issues Encountered:** None. Responsive layout implemented with tailwind `hidden md:flex`.  
 **Next Step:** Step 3 — Browse + Product Detail  
-**Notes:** -
+**Notes:** Dashboard is fully functional with mock data. Sidebar supports collapse state.
+
 
 ---
 
