@@ -124,21 +124,35 @@
 
 ---
 
-## Step 5 - [DATE] - [ ] NOT STARTED
+## Step 5 - 2026-05-03 - [x] COMPLETED
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ COMPLETED
 
 **What Was Built:**
-- [List deliverables]
+- `/src/lib/supabase.ts` — Complete Supabase client setup
+  - **3 client types:**
+    - `createClient()` — Browser client for client components (uses anon key, goes through RLS)
+    - `createServerSupabaseClient(cookieStore)` — Server client for server components/API routes (async cookies pattern for Next.js 16)
+    - `createServiceRoleClient()` — Admin client that bypasses RLS (server-only, throws if key missing)
+  - **8 helper functions:**
+    - `getCurrentUser()` — Browser-side: returns typed `User | null`
+    - `getServerCurrentUser(cookieStore)` — Server-side: returns typed `User | null`
+    - `isAdmin(userId)` — Browser-side: checks admin_roles table
+    - `isServerAdmin(cookieStore, userId)` — Server-side admin check
+    - `getUserRole(userId)` — Browser-side: returns `AdminRole | null`
+    - `getServerUserRole(cookieStore, userId)` — Server-side role check
+    - `getAdminPermissions(userId)` — Returns full `AdminRoleEntry` with permissions_json
+  - All functions type-safe against `/src/types/database.ts`
+  - No credentials exposed client-side (only `NEXT_PUBLIC_` vars)
 
-**Time Spent:** [H hours, M minutes]
+**Time Spent:** ~20 minutes
 
 **Issues Encountered:**
-- [Issue and resolution]
+- None — `npx tsc --noEmit` passes with zero errors
 
 **Next Step:** Step 6 — Calculation engines
 
-**Notes:** [Context for Phase 4]
+**Notes:** Server client uses Next.js 16 async `cookies()` pattern (pass awaited cookieStore). Service role client is for admin operations only — never import in client components. Both browser and server helpers provided for each function to support both rendering contexts.
 
 ---
 
