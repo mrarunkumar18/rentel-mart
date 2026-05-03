@@ -1,4 +1,4 @@
-import { AdminRole } from "@/types/admin";
+import { AdminRole, UserStatus } from "@/types/database";
 
 export interface AdminAccount {
   id: string;

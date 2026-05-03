@@ -11,8 +11,11 @@
 /** User role — PRD 1.3: single account, role determines access level */
 export type UserRole = 'user' | 'admin' | 'super_admin';
 
+/** User status for management */
+export type UserStatus = 'active' | 'suspended' | 'pending_verify' | 'banned';
+
 /** Product listing status — PRD 3.6.1: lifecycle from creation to archival */
-export type ProductStatus = 'pending' | 'active' | 'suspended' | 'archived';
+export type ProductStatus = 'pending' | 'active' | 'suspended' | 'archived' | 'rejected' | 'flagged';
 
 /** Product condition at time of listing */
 export type ProductCondition = 'new' | 'like_new' | 'good' | 'fair' | 'worn';
@@ -65,7 +68,7 @@ export type LateFeeUnit = 'per_hour' | 'per_6_hours' | 'per_day';
 export type PlatformFeeType = 'transaction_percentage' | 'flat_fee' | 'subscription';
 
 /** Admin role type — PRD 4.2: RBAC with granular permissions */
-export type AdminRole = 'super_admin' | 'operations' | 'finance' | 'content' | 'custom';
+export type AdminRole = 'super_admin' | 'ops_sub_admin' | 'finance_sub_admin' | 'content_sub_admin' | 'custom';
 
 // ============================================================================
 // TABLE INTERFACES
@@ -81,6 +84,7 @@ export interface User {
   full_name: string;
   phone: string | null;
   role: UserRole;
+  status: UserStatus;
   avatar_url: string | null;
   address: string | null;
   city: string | null;

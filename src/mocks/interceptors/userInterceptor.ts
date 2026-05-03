@@ -1,31 +1,35 @@
+import { mockUsers } from "../seed";
+import { User, UserStatus } from "@/types/database";
+
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export interface UserFilters {
-  status?: string;
+  status?: UserStatus | "all";
   search?: string;
   page?: number;
   pageSize?: number;
 }
 
-import { mockUsers, MockUser } from "../store/users.mock";
-
 export const userInterceptor = {
-
   // ── SWAP POINT: replace with → GET /api/v1/admin/users ──
-  getUsers: async (filters?: UserFilters): Promise<{ data: MockUser[]; total: number }> => {
+  getUsers: async (filters?: UserFilters): Promise<{ data: User[]; total: number }> => {
     await delay(300);
     let result = [...mockUsers];
+    
     if (filters?.status && filters.status !== "all") {
       result = result.filter((u) => u.status === filters.status);
     }
+    
     if (filters?.search) {
       const q = filters.search.toLowerCase();
       result = result.filter(
-        (u) => u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
+        (u) => u.full_name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)
       );
     }
+    
     const page = filters?.page || 1;
     const pageSize = filters?.pageSize || 20;
+    
     return {
       data: result.slice((page - 1) * pageSize, page * pageSize),
       total: result.length,
@@ -38,7 +42,7 @@ export const userInterceptor = {
     const user = mockUsers.find((u) => u.id === userId);
     if (!user) throw new Error("User not found");
     user.status = "suspended";
-    user.suspendReason = reason;
+    // In a real app, we'd store the reason in a user_history or status_metadata column
   },
 
   // ── SWAP POINT: replace with → PUT /api/v1/admin/users/:id/ban ──
@@ -54,7 +58,6 @@ export const userInterceptor = {
     await delay(350);
     const user = mockUsers.find((u) => u.id === userId);
     if (!user) throw new Error("User not found");
-    user.isVerified = true;
     user.status = "active";
   },
 
@@ -64,6 +67,5 @@ export const userInterceptor = {
     const user = mockUsers.find((u) => u.id === userId);
     if (!user) throw new Error("User not found");
     user.status = "active";
-    user.suspendReason = undefined;
   },
 };

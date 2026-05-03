@@ -1,6 +1,3 @@
-// Central interceptor registry — all mock API calls route through here.
-// In Phase 4a, swap each interceptor file with a real API call module.
-
 export { userInterceptor } from "./userInterceptor";
 export { listingInterceptor } from "./listingInterceptor";
 export { bookingInterceptor } from "./bookingInterceptor";

@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, PageHeader, useToastStore } from "@/components/admin/ui";
-import { configInterceptor } from "@/mock/interceptors/configInterceptor";
+import { configInterceptor } from "@/mocks/interceptors/configInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { PlatformConfig } from "@/mock/store/config.mock";
+import { PlatformConfig } from "@/types/database";
 import { RotateCcw, Save, AlertCircle } from "lucide-react";
 
 type FieldMeta = {

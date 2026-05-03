@@ -3,10 +3,10 @@
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
-import { disputeInterceptor } from "@/mock/interceptors/disputeInterceptor";
+import { disputeInterceptor } from "@/mocks/interceptors/disputeInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
 import { useAdminSession } from "@/hooks/useRBAC";
-import { MockDispute, DisputeVerdict } from "@/mock/store/disputes.mock";
+import { MockDispute } from "@/types/admin";
 import { ShieldAlert, X, ZoomIn, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 

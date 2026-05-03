@@ -3,9 +3,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
-import { bookingInterceptor } from "@/mock/interceptors/bookingInterceptor";
+import { bookingInterceptor } from "@/mocks/interceptors/bookingInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockBooking } from "@/mock/store/bookings.mock";
+import { MockBooking } from "@/types/admin";
 import { Search, CalendarCheck, XCircle } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral" | "info"> = {

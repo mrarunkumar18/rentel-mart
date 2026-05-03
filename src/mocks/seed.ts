@@ -20,16 +20,16 @@ const now = '2026-05-03T12:00:00.000Z';
 // 1. USERS (10)
 // ============================================================================
 export const mockUsers: User[] = [
-  { id: uuid(1), email: 'rahul.sharma@email.com', full_name: 'Rahul Sharma', phone: '+91-9876543201', role: 'user', avatar_url: null, address: '12 MG Road', city: 'Mumbai', created_at: now, updated_at: now },
-  { id: uuid(2), email: 'priya.patel@email.com', full_name: 'Priya Patel', phone: '+91-9876543202', role: 'user', avatar_url: null, address: '45 Brigade Rd', city: 'Bangalore', created_at: now, updated_at: now },
-  { id: uuid(3), email: 'arjun.reddy@email.com', full_name: 'Arjun Reddy', phone: '+91-9876543203', role: 'user', avatar_url: null, address: '78 Jubilee Hills', city: 'Hyderabad', created_at: now, updated_at: now },
-  { id: uuid(4), email: 'sneha.kumar@email.com', full_name: 'Sneha Kumar', phone: '+91-9876543204', role: 'user', avatar_url: null, address: '23 Connaught Pl', city: 'Delhi', created_at: now, updated_at: now },
-  { id: uuid(5), email: 'vikram.singh@email.com', full_name: 'Vikram Singh', phone: '+91-9876543205', role: 'user', avatar_url: null, address: '56 Civil Lines', city: 'Jaipur', created_at: now, updated_at: now },
-  { id: uuid(6), email: 'ananya.gupta@email.com', full_name: 'Ananya Gupta', phone: '+91-9876543206', role: 'user', avatar_url: null, address: '89 Park Street', city: 'Kolkata', created_at: now, updated_at: now },
-  { id: uuid(7), email: 'karthik.nair@email.com', full_name: 'Karthik Nair', phone: '+91-9876543207', role: 'user', avatar_url: null, address: '34 Marine Dr', city: 'Kochi', created_at: now, updated_at: now },
-  { id: uuid(8), email: 'meera.joshi@email.com', full_name: 'Meera Joshi', phone: '+91-9876543208', role: 'user', avatar_url: null, address: '67 FC Road', city: 'Pune', created_at: now, updated_at: now },
-  { id: uuid(9), email: 'admin@rentify.com', full_name: 'Admin User', phone: '+91-9876543209', role: 'admin', avatar_url: null, address: 'Rentify HQ', city: 'Mumbai', created_at: now, updated_at: now },
-  { id: uuid(10), email: 'superadmin@rentify.com', full_name: 'Super Admin', phone: '+91-9876543210', role: 'super_admin', avatar_url: null, address: 'Rentify HQ', city: 'Mumbai', created_at: now, updated_at: now },
+  { id: uuid(1), email: 'rahul.sharma@email.com', full_name: 'Rahul Sharma', phone: '+91-9876543201', role: 'user', status: 'active', avatar_url: null, address: '12 MG Road', city: 'Mumbai', created_at: now, updated_at: now },
+  { id: uuid(2), email: 'priya.patel@email.com', full_name: 'Priya Patel', phone: '+91-9876543202', role: 'user', status: 'active', avatar_url: null, address: '45 Brigade Rd', city: 'Bangalore', created_at: now, updated_at: now },
+  { id: uuid(3), email: 'arjun.reddy@email.com', full_name: 'Arjun Reddy', phone: '+91-9876543203', role: 'user', status: 'active', avatar_url: null, address: '78 Jubilee Hills', city: 'Hyderabad', created_at: now, updated_at: now },
+  { id: uuid(4), email: 'sneha.kumar@email.com', full_name: 'Sneha Kumar', phone: '+91-9876543204', role: 'user', status: 'suspended', avatar_url: null, address: '23 Connaught Pl', city: 'Delhi', created_at: now, updated_at: now },
+  { id: uuid(5), email: 'vikram.singh@email.com', full_name: 'Vikram Singh', phone: '+91-9876543205', role: 'user', status: 'active', avatar_url: null, address: '56 Civil Lines', city: 'Jaipur', created_at: now, updated_at: now },
+  { id: uuid(6), email: 'ananya.gupta@email.com', full_name: 'Ananya Gupta', phone: '+91-9876543206', role: 'user', status: 'active', avatar_url: null, address: '89 Park Street', city: 'Kolkata', created_at: now, updated_at: now },
+  { id: uuid(7), email: 'karthik.nair@email.com', full_name: 'Karthik Nair', phone: '+91-9876543207', role: 'user', status: 'pending_verify', avatar_url: null, address: '34 Marine Dr', city: 'Kochi', created_at: now, updated_at: now },
+  { id: uuid(8), email: 'meera.joshi@email.com', full_name: 'Meera Joshi', phone: '+91-9876543208', role: 'user', status: 'active', avatar_url: null, address: '67 FC Road', city: 'Pune', created_at: now, updated_at: now },
+  { id: uuid(9), email: 'admin@rentify.com', full_name: 'Admin User', phone: '+91-9876543209', role: 'admin', status: 'active', avatar_url: null, address: 'Rentify HQ', city: 'Mumbai', created_at: now, updated_at: now },
+  { id: uuid(10), email: 'superadmin@rentify.com', full_name: 'Super Admin', phone: '+91-9876543210', role: 'super_admin', status: 'active', avatar_url: null, address: 'Rentify HQ', city: 'Mumbai', created_at: now, updated_at: now },
 ];
 
 // ============================================================================
@@ -73,7 +73,7 @@ export const mockProducts: Product[] = productData.map((p, i) => ({
   original_value: p[3],
   condition: p[4],
   delivery_option: i % 3 === 0 ? 'both' : i % 3 === 1 ? 'platform' : 'self_pickup',
-  status: i < 22 ? 'active' : i === 22 ? 'pending' : i === 23 ? 'suspended' : 'archived',
+  status: i < 20 ? 'active' : i === 20 ? 'pending' : i === 21 ? 'suspended' : i === 22 ? 'rejected' : i === 23 ? 'flagged' : 'archived',
   created_at: now,
   updated_at: now,
 }));

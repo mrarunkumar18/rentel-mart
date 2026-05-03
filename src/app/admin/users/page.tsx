@@ -6,9 +6,9 @@ import {
   Button, StatusBadge, PageHeader, Table, Th, Td,
   Modal, Skeleton, EmptyState, useToastStore,
 } from "@/components/admin/ui";
-import { userInterceptor } from "@/mock/interceptors/userInterceptor";
+import { userInterceptor } from "@/mocks/interceptors/userInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockUser } from "@/mock/store/users.mock";
+import { MockUser } from "@/types/admin";
 import { Search, Users, MoreHorizontal, Ban, UserCheck, ShieldOff } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {
@@ -129,10 +129,10 @@ function UserManagementContent() {
                 <Td>
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-primary font-bold text-xs">
-                      {u.name[0]}
+                      {u.full_name[0]}
                     </div>
                     <div>
-                      <p className="font-medium text-slate-800 text-sm">{u.name}</p>
+                      <p className="font-medium text-slate-800 text-sm">{u.full_name}</p>
                       <p className="text-xs text-slate-400">{u.id}</p>
                     </div>
                   </div>

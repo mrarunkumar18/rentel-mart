@@ -3,7 +3,7 @@
 import { create } from "zustand";
 import { AdminRole, CurrentAdminSession, ModuleAction, ModuleId } from "@/types/admin";
 import { rbacConfig } from "@/lib/rbac.config";
-import { mockAdminAccounts } from "@/mock/store/adminAccounts.mock";
+import { mockAdminAccounts } from "@/mocks/admin";
 
 // ── SWAP POINT (Phase 4b): Replace mock session with JWT decoded from Supabase Auth cookie ──
 interface AdminSessionStore {
