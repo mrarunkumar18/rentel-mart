@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
@@ -6,6 +7,7 @@ import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyS
 import { bookingInterceptor } from "@/mocks/interceptors/bookingInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
 import { MockBooking } from "@/types/admin";
+import { BookingStatus } from "@/types/database";
 import { Search, CalendarCheck, XCircle } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral" | "info"> = {
@@ -27,7 +29,7 @@ function BookingContent() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<BookingStatus | "all">("all");
   const [page, setPage] = useState(1);
   const [cancelModal, setCancelModal] = useState<MockBooking | null>(null);
   const [reason, setReason] = useState("");
@@ -66,7 +68,7 @@ function BookingContent() {
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary" />
         </div>
-        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
+        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value as BookingStatus | "all"); setPage(1); }}
           className="text-sm border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
           <option value="all">All Statuses</option>
           {["confirmed","active","returned","cancelled","disputed"].map(s => (

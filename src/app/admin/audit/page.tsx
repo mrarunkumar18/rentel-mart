@@ -3,7 +3,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
 import { PageHeader, Table, Th, Td, Skeleton, EmptyState } from "@/components/admin/ui";
-import { mockAuditLog, AuditEntry } from "@/mocks/audit";
+import { mockAuditLog } from "@/mocks/audit";
+import { AuditEntry } from "@/types/admin";
 import { ScrollText, Search } from "lucide-react";
 
 const delay = (ms: number) => new Promise((r) => setTimeout(r, ms));

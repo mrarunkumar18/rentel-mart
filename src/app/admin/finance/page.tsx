@@ -5,7 +5,7 @@ import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
 import { paymentInterceptor } from "@/mocks/interceptors/paymentInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
-import { MockPayment } from "@/types/admin";
+import { MockPayment, PaymentStatus } from "@/types/admin";
 import { Search, CreditCard, RotateCcw, Flag } from "lucide-react";
 
 const STATUS_VARIANT: Record<string, "success" | "warning" | "error" | "neutral"> = {
@@ -26,7 +26,7 @@ function FinanceContent() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<PaymentStatus | "all">("all");
   const [page, setPage] = useState(1);
   const [refundModal, setRefundModal] = useState<MockPayment | null>(null);
   const [refundReason, setRefundReason] = useState("");
@@ -82,7 +82,7 @@ function FinanceContent() {
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary" />
         </div>
-        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
+        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value as PaymentStatus | "all"); setPage(1); }}
           className="text-sm border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
           <option value="all">All</option>
           <option value="completed">Completed</option>

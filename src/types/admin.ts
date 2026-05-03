@@ -59,11 +59,12 @@ export interface MockListing {
 
 export interface MockBooking {
   id: string;
-  productTitle: string;
+  listingTitle: string;
   renterName: string;
-  start_date: string;
-  end_date: string;
+  startDate: string;
+  endDate: string;
   status: BookingStatus;
+  totalAmount: number;
 }
 
 export interface MockDispute {
@@ -84,7 +85,20 @@ export interface MockDispute {
   resolvedAt?: string;
 }
 
+export type PaymentStatus = "completed" | "refunded" | "failed" | "flagged";
+
 export interface MockPayment {
+  id: string;
+  transactionRef: string;
+  userName: string;
+  amount: number;
+  platformFee: number;
+  method: string;
+  status: PaymentStatus;
+  createdAt: string;
+}
+
+export interface MockPayout {
   id: string;
   listerName: string;
   listerEmail: string;
@@ -115,6 +129,27 @@ export interface MockContent {
   reportedAt: string;
   contentUrl?: string;
   contentText?: string;
+}
+
+export interface AdminPlatformConfig {
+  platform_fee_percentage: number;
+  late_return_fee_per_hour: number;
+  security_deposit_multiplier: number;
+  minimum_rental_duration_hours: number;
+  maximum_rental_duration_days: number;
+  require_id_verification: boolean;
+  require_phone_verification: boolean;
+  max_active_bookings_per_user: number;
+  auto_suspend_after_disputes: number;
+  guest_checkout_enabled: boolean;
+  max_photos_per_listing: number;
+  require_pickup_photos: boolean;
+  require_return_photos: boolean;
+  listing_approval_required: boolean;
+  send_booking_email: boolean;
+  send_dispute_email: boolean;
+  admin_alert_email: string;
+  maintenance_mode: boolean;
 }
 
 export interface AnalyticsData {

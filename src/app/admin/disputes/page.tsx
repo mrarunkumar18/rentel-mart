@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
+import { DisputeStatus } from "@/types/database";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
 import { disputeInterceptor } from "@/mocks/interceptors/disputeInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
@@ -28,7 +29,7 @@ function DisputeContent() {
   const [disputes, setDisputes] = useState<MockDispute[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<DisputeStatus | "all">("all");
   const [selected, setSelected] = useState<MockDispute | null>(null);
   const [verdict, setVerdict] = useState<DisputeVerdict | "">("");
   const [notes, setNotes] = useState("");
@@ -213,7 +214,7 @@ function DisputeContent() {
     <>
       <PageHeader title="Dispute Resolution" subtitle={`${total} total disputes`} />
       <div className="mb-6">
-        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); }}
+        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value as DisputeStatus | "all"); }}
           className="text-sm border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
           <option value="all">All Statuses</option>
           <option value="open">Open</option>

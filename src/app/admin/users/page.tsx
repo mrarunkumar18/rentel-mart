@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
+import { UserStatus } from "@/types/database";
 import {
   Button, StatusBadge, PageHeader, Table, Th, Td,
   Modal, Skeleton, EmptyState, useToastStore,
@@ -34,7 +35,7 @@ function UserManagementContent() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<UserStatus | "all">("all");
   const [page, setPage] = useState(1);
 
   const [actionModal, setActionModal] = useState<{ user: MockUser; type: "suspend" | "ban" | "verify" | "activate" } | null>(null);
@@ -94,7 +95,7 @@ function UserManagementContent() {
         </div>
         <select
           value={statusFilter}
-          onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
+          onChange={(e) => { setStatusFilter(e.target.value as UserStatus | "all"); setPage(1); }}
           className="text-sm border border-slate-200 rounded-lg px-3 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-secondary"
         >
           <option value="all">All Statuses</option>

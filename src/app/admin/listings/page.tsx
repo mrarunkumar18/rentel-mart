@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { RouteGuard } from "@/components/admin/RouteGuard";
+import { ProductStatus } from "@/types/database";
 import { Button, StatusBadge, PageHeader, Table, Th, Td, Modal, Skeleton, EmptyState, useToastStore } from "@/components/admin/ui";
 import { listingInterceptor } from "@/mocks/interceptors/listingInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
@@ -26,7 +27,7 @@ function ListingContent() {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState<ProductStatus | "all">("all");
   const [page, setPage] = useState(1);
   const [modal, setModal] = useState<{ listing: MockListing; type: "reject" | "flag" | "remove" } | null>(null);
   const [reason, setReason] = useState("");
@@ -74,7 +75,7 @@ function ListingContent() {
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="w-full pl-9 pr-4 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary" />
         </div>
-        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
+        <select value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value as ProductStatus | "all"); setPage(1); }}
           className="text-sm border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-secondary">
           <option value="all">All Statuses</option>
           <option value="pending">Pending</option>

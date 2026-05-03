@@ -5,11 +5,12 @@ import { RouteGuard } from "@/components/admin/RouteGuard";
 import { Button, PageHeader, useToastStore } from "@/components/admin/ui";
 import { configInterceptor } from "@/mocks/interceptors/configInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
+import { AdminPlatformConfig } from "@/types/admin";
 import { PlatformConfig } from "@/types/database";
 import { RotateCcw, Save, AlertCircle } from "lucide-react";
 
 type FieldMeta = {
-  key: keyof PlatformConfig;
+  key: keyof AdminPlatformConfig;
   label: string;
   type: "number" | "boolean" | "email";
   min?: number;
@@ -69,11 +70,11 @@ export default function PlatformConfigPage() {
 function ConfigContent() {
   const { can } = useRBAC();
   const { addToast } = useToastStore();
-  const [saved, setSaved] = useState<PlatformConfig | null>(null);
-  const [draft, setDraft] = useState<PlatformConfig | null>(null);
+  const [saved, setSaved] = useState<AdminPlatformConfig | null>(null);
+  const [draft, setDraft] = useState<AdminPlatformConfig | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [errors, setErrors] = useState<Partial<Record<keyof PlatformConfig, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof AdminPlatformConfig, string>>>({});
 
   useEffect(() => {
     configInterceptor.getConfig().then((c) => { setSaved(c); setDraft({ ...c }); setLoading(false); });
@@ -83,7 +84,7 @@ function ConfigContent() {
 
   const validate = (): boolean => {
     if (!draft) return false;
-    const errs: Partial<Record<keyof PlatformConfig, string>> = {};
+    const errs: Partial<Record<keyof AdminPlatformConfig, string>> = {};
     if (draft.platform_fee_percentage < 0 || draft.platform_fee_percentage > 100) errs.platform_fee_percentage = "Must be 0–100";
     if (draft.security_deposit_multiplier < 1) errs.security_deposit_multiplier = "Must be ≥ 1";
     if (draft.minimum_rental_duration_hours < 1) errs.minimum_rental_duration_hours = "Must be ≥ 1";
@@ -110,7 +111,7 @@ function ConfigContent() {
     if (saved) { setDraft({ ...saved }); setErrors({}); }
   };
 
-  const update = <K extends keyof PlatformConfig>(key: K, value: PlatformConfig[K]) => {
+  const update = <K extends keyof AdminPlatformConfig>(key: K, value: AdminPlatformConfig[K]) => {
     setDraft(d => d ? { ...d, [key]: value } : d);
   };
 
