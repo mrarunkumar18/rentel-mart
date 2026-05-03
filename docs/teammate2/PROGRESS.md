@@ -40,13 +40,23 @@
 
 ---
 
-## Step 3 - [DATE] - [ ] NOT STARTED
-**Status:** ⬜ NOT STARTED  
-**What Was Built:** -  
-**Time Spent:** -  
-**Issues Encountered:** -  
-**Next Step:** Step 4 — Booking flow  
-**Notes:** -
+## Step 3 - 2026-05-03 - [x] COMPLETE
+**Status:** ✅ COMPLETE  
+**What Was Built:**
+- `src/mocks/products.ts` — Mock products (5 entries) and categories with subcategories
+- `src/components/shared/ProductCard.tsx` — Grid card with condition badges and hover effects
+- `src/components/shared/ProductFilter.tsx` — Sticky filter panel with price range, condition, and availability
+- `src/app/(renter)/browse/page.tsx` — S-02 Browse: full search/sort/filter integration
+- `src/app/(renter)/browse/categories/page.tsx` — S-15 Categories: visual grid with subcategory links
+- `src/components/product/ImageGallery.tsx` — Product detail gallery with thumbnails
+- `src/components/product/PricingTable.tsx` — Breakdown of daily/weekly/monthly rates
+- `src/components/product/BookingCTA.tsx` — Sticky booking card with date calculation logic
+- `src/app/(renter)/product/[id]/page.tsx` — S-03 Detail: full product view with Next.js 16 Promise params
+**Time Spent:** ~1 session  
+**Issues Encountered:** Filename typo (fixed). Next.js 16 `params` as Promise handled correctly.  
+**Next Step:** Step 4 — Booking Flow  
+**Notes:** All browsing and discovery screens are functional with mock data and responsive layouts.
+
 
 ---
 
