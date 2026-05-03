@@ -6,7 +6,6 @@ import { Button, PageHeader, useToastStore } from "@/components/admin/ui";
 import { configInterceptor } from "@/mocks/interceptors/configInterceptor";
 import { useRBAC } from "@/hooks/useRBAC";
 import { AdminPlatformConfig } from "@/types/admin";
-import { PlatformConfig } from "@/types/database";
 import { RotateCcw, Save, AlertCircle } from "lucide-react";
 
 type FieldMeta = {
@@ -121,7 +120,7 @@ function ConfigContent() {
     <>
       <PageHeader
         title="Platform Configuration"
-        subtitle="18 platform-wide settings"
+        subtitle="Operational settings"
         actions={
           <div className="flex gap-2">
             <Button variant="ghost" size="sm" onClick={handleRevert} disabled={!isDirty}>
@@ -170,7 +169,7 @@ function ConfigContent() {
                       {type === "boolean" ? (
                         <button
                           disabled={!can("M07", "edit")}
-                          onClick={() => update(key, !rawDraft as PlatformConfig[typeof key])}
+                          onClick={() => update(key, !rawDraft as AdminPlatformConfig[typeof key])}
                           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${rawDraft ? "bg-primary" : "bg-slate-200"} disabled:opacity-50 disabled:cursor-not-allowed`}
                         >
                           <span className={`inline-block h-4 w-4 rounded-full bg-white shadow transition-transform ${rawDraft ? "translate-x-6" : "translate-x-1"}`} />
@@ -180,7 +179,7 @@ function ConfigContent() {
                           type="email"
                           disabled={!can("M07", "edit")}
                           value={rawDraft as string}
-                          onChange={(e) => update(key, e.target.value as PlatformConfig[typeof key])}
+                          onChange={(e) => update(key, e.target.value as AdminPlatformConfig[typeof key])}
                           className={`w-56 border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-secondary disabled:opacity-50 ${error ? "border-red-300" : "border-slate-200"}`}
                         />
                       ) : (
@@ -190,7 +189,7 @@ function ConfigContent() {
                           min={min}
                           max={max}
                           value={rawDraft as number}
-                          onChange={(e) => update(key, Number(e.target.value) as PlatformConfig[typeof key])}
+                          onChange={(e) => update(key, Number(e.target.value) as AdminPlatformConfig[typeof key])}
                           className={`w-28 border rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-secondary disabled:opacity-50 ${error ? "border-red-300" : "border-slate-200"}`}
                         />
                       )}
