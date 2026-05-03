@@ -4,21 +4,27 @@
 
 ---
 
-## Step 1 - [DATE] - [ ] NOT STARTED
+## Step 1 - 2026-05-03 - [x] COMPLETED
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ COMPLETED
 
 **What Was Built:**
-- [List deliverables]
+- SQL migration file: `/supabase/schema/001_core_tables.sql`
+- `users` table — UUID PK, email (UNIQUE), full_name, phone, role (CHECK: user/admin/super_admin), avatar_url, address, city, timestamps
+- `products` table — UUID PK, FK → users(id) ON DELETE CASCADE, title, description, category, original_value, condition, delivery_option (CHECK), status (CHECK), timestamps
+- `product_pricing` table — UUID PK, FK → products(id) ON DELETE CASCADE, per_day/week/month/year rates, late_fee_rate, late_fee_unit (CHECK), UNIQUE(product_id)
+- `product_images` table — UUID PK, FK → products(id) ON DELETE CASCADE, url, is_primary, created_at
+- `update_updated_at_column()` trigger function for auto-updating `updated_at` columns
+- Triggers applied on `users` and `products` tables
 
-**Time Spent:** [H hours, M minutes]
+**Time Spent:** ~30 minutes
 
 **Issues Encountered:**
-- [Issue and resolution]
+- None
 
 **Next Step:** Step 2 — Remaining tables + indexes
 
-**Notes:** [Context for Phase 4]
+**Notes:** SQL file ready to execute in Supabase SQL Editor. Verification queries included as comments at the bottom of the file. The `update_updated_at_column()` trigger function is reusable for future tables in Step 2.
 
 ---
 
