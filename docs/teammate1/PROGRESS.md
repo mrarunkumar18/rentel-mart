@@ -156,21 +156,42 @@
 
 ---
 
-## Step 6 - [DATE] - [ ] NOT STARTED
+## Step 6 - 2026-05-03 - [x] COMPLETED
 
-**Status:** ⬜ NOT STARTED
+**Status:** ✅ COMPLETED
 
 **What Was Built:**
-- [List deliverables]
+- `/src/lib/engines.ts` — 9 pure calculation engine functions:
+  1. `calculateRentalPrice(pricing, startDate, endDate)` — Optimal tier selection (day/week/month/year) with fallback
+  2. `calculateSecurityDeposit(productValue, pct=20)` — Configurable deposit percentage
+  3. `calculateLateFee(rate, unit, hoursOverdue)` — Accrual by per_hour/per_6_hours/per_day
+  4. `calculatePlatformFee(rentalValue, feeConfig)` — Supports all 3 fee models simultaneously
+  5. `calculatePayoutHoldPeriod(durationDays)` — 5-tier: 2/5/7/10/14 days
+  6. `calculatePayoutBreakdown(gross, platformFee, deductions)` — Net = gross - fees - deductions
+  7. `determinePaymentPlan(durationDays)` — ≤7d: upfront, 8-30d: +weekly, >30d: +monthly
+  8. `splitInstallments(total, plan, startDate, endDate)` — Equal split with remainder on first
+  9. `calculateTotalDue(rent, deposit, deliveryFee)` — Renter's total at booking
+- Result type interfaces: `RentalPriceResult`, `PlatformFeeResult`, `FeeConfig`, `PayoutBreakdownResult`, `InstallmentBreakdown`
+- `/src/lib/__tests__/engines.test.ts` — 70 unit tests + 1 integration test
+- `vitest.config.ts` — Vitest configuration with path aliases
+- Test scripts added to `package.json`: `test`, `test:watch`, `test:coverage`
 
-**Time Spent:** [H hours, M minutes]
+**Time Spent:** ~30 minutes
 
 **Issues Encountered:**
-- [Issue and resolution]
+- None — all 70 tests pass, 100% coverage achieved
+
+**Test Coverage:**
+```
+Statements : 100% (81/81)
+Branches   : 100% (55/55)
+Functions  : 100% (9/9)
+Lines      : 100% (71/71)
+```
 
 **Next Step:** Step 7 — Mock data + colors + final testing
 
-**Notes:** [Context for Phase 4]
+**Notes:** All engine functions are pure — zero side effects, zero DB calls. FeeConfig interface allows runtime configuration from platform_config table. All monetary calculations use `Math.round(x * 100) / 100` for INR precision.
 
 ---
 
