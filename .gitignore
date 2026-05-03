@@ -1,0 +1,7 @@
+MEMORY.md
+node_modules
+.env
+.next
+out
+build
+*.log
