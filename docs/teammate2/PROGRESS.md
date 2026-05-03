@@ -76,13 +76,18 @@
 
 ---
 
-## Step 5 - [DATE] - [ ] NOT STARTED
-**Status:** ⬜ NOT STARTED  
-**What Was Built:** -  
-**Time Spent:** -  
-**Issues Encountered:** -  
+## Step 5 - 2026-05-03 - [x] COMPLETE
+**Status:** ✅ COMPLETE  
+**What Was Built:**
+- `src/mocks/orders.ts` — Mock orders (3 entries) with statuses, timelines, and installments
+- `src/app/(renter)/orders/page.tsx` — S-04 My Orders: Filter tabs (Pending, Active, Completed), order cards with status badges
+- `src/app/(renter)/orders/[id]/page.tsx` — S-05 Order Detail: Comprehensive view with timeline, installment schedule, and deposit refund info
+- **Components**: Order status badges, horizontal order timeline, dynamic installment table, cost breakdown sidebar
+**Time Spent:** ~1 session  
+**Issues Encountered:** None. Next.js 16 Promise params handled correctly for order detail route.  
 **Next Step:** Step 6 — Lister screens  
-**Notes:** -
+**Notes:** Order management is fully functional with mock data. Handles various states including active rentals and completed orders.
+
 
 ---
 
