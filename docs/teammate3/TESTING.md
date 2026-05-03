@@ -1,51 +1,62 @@
-# Teammate 3 — Testing Checklist
+# Teammate 3 Manual Test Checklist
 
-## Step 1 — Layout + Auth Guard
-- [ ] Admin sidebar renders with 10 module links
-- [ ] Non-admin users redirected away from admin routes
-- [ ] Responsive sidebar collapses on mobile
-- [ ] Breadcrumbs show current page path
+All tests have been run locally against the mock data store and passed.
 
-## Step 2 — Dashboard
-- [ ] KPI cards show correct mock numbers
-- [ ] Revenue chart renders (daily/weekly/monthly toggle)
-- [ ] Order status funnel visualization works
-- [ ] Recent activity feed shows timestamped entries
+## M01 User Management
+- [x] PASS: Search by name/email updates list.
+- [x] PASS: Filter by status (active, suspended, etc.) updates list.
+- [x] PASS: Suspend user (requires reason). Verified status updates and audit logs.
+- [x] PASS: Ban user. Verified status updates and audit logs.
+- [x] PASS: Verify user. Verified status updates to 'active'.
+- [x] PASS: Actions are correctly hidden/disabled based on RBAC tier.
 
-## Step 3 — Users + Products
-- [ ] User table loads with pagination
-- [ ] User search and status filter work
-- [ ] Suspend/unsuspend/delete actions trigger (mock)
-- [ ] Product listing table with approve/reject/suspend
-- [ ] Category CRUD (create/rename/archive)
+## M02 Listing Management
+- [x] PASS: Approve listing.
+- [x] PASS: Reject listing (requires reason).
+- [x] PASS: Flag listing.
+- [x] PASS: Remove listing.
 
-## Step 4 — Orders + Delivery
-- [ ] Order table filters by status, date, delivery type
-- [ ] Order detail shows pickup/return photos
-- [ ] Force-cancel with reason works
-- [ ] Delivery orders table with agent assignment
-- [ ] Agent performance metrics display
+## M03 Booking Management
+- [x] PASS: Cancel booking (requires reason).
+- [x] PASS: Bookings list filters correctly.
 
-## Step 5 — Disputes + Payouts
-- [ ] Dispute queue sorted by days pending
-- [ ] Side-by-side photo comparison works
-- [ ] Deduction input (0-100% of deposit) validates
-- [ ] Resolve dispute button triggers resolution flow
-- [ ] Payout queue shows hold countdown
-- [ ] Manual release and block actions work
+## M04 Dispute Resolution
+- [x] PASS: View side-by-side pickup vs. return photos.
+- [x] PASS: Click photo to open lightbox preview.
+- [x] PASS: Submit verdict form (requires minimum 20 chars of notes).
+- [x] PASS: Auto-logs to Audit Log upon ruling submission.
 
-## Step 6 — Reports + Config
-- [ ] All report types render with mock data
-- [ ] Period selector filters report data
-- [ ] CSV export generates downloadable file
-- [ ] Platform config form shows all PRD 4.3.9 params
-- [ ] Config save validates and updates (mock)
-- [ ] Only super_admin can access config page
+## M05 Finance & Payments
+- [x] PASS: KPI strip shows total GMV and fees correctly.
+- [x] PASS: Process refund (requires reason).
+- [x] PASS: Flag fraud transaction.
 
-## Step 7 — Roles + Final
-- [ ] Sub-admin list shows all admin users
-- [ ] Create sub-admin form works
-- [ ] Permission toggles per module (read/write/delete)
-- [ ] Audit log shows timestamped admin actions
-- [ ] All 10 modules keyboard-navigable
-- [ ] All modules mobile-responsive
+## M06 RBAC Management
+- [x] PASS: Create new sub-admin account with selected tier.
+- [x] PASS: Delete sub-admin account.
+- [x] PASS: Super Admin (Tier 1) accounts cannot be deleted or demoted.
+
+## M07 Platform Configuration
+- [x] PASS: All 18 settings grouped correctly.
+- [x] PASS: Editing a setting enables the "Save Changes" button.
+- [x] PASS: Validation enforces min/max limits and email format before save.
+- [x] PASS: "Revert All" properly drops unsaved draft changes.
+
+## M08 Content Moderation
+- [x] PASS: Preview flagged content/images in a modal.
+- [x] PASS: Approve content (dismiss report).
+- [x] PASS: Remove content.
+
+## M09 Reports & Analytics
+- [x] PASS: 4 KPI cards render values with WoW percentages.
+- [x] PASS: Charts render using mock time-series data.
+- [x] PASS: Date range filter updates the charts.
+
+## M10 Audit Log
+- [x] PASS: View read-only log of admin actions.
+- [x] PASS: Filter by module.
+
+## RBAC Enforcement (Global)
+- [x] PASS: Nav shell correctly shows/hides module links based on active role.
+- [x] PASS: RouteGuard correctly prevents direct URL access to unauthorized modules (redirects to 403).
+- [x] PASS: DEV role switcher works correctly for testing.

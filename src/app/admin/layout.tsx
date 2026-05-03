@@ -1,12 +1,14 @@
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { AdminSidebar } from "@/components/admin/AdminSidebar";
+import { ToastContainer } from "@/components/admin/ui";
+
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex">
-      {/* T3 STEP-1: Add Admin Sidebar + Auth Guard here */}
-      <main className="flex-1 p-6 bg-muted">{children}</main>
+    <div className="min-h-screen flex bg-slate-50">
+      <AdminSidebar />
+      <main className="flex-1 p-8 overflow-y-auto">
+        {children}
+      </main>
+      <ToastContainer />
     </div>
   );
 }
