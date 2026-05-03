@@ -60,13 +60,19 @@
 
 ---
 
-## Step 4 - [DATE] - [ ] NOT STARTED
-**Status:** ⬜ NOT STARTED  
-**What Was Built:** -  
-**Time Spent:** -  
-**Issues Encountered:** -  
-**Next Step:** Step 5 — Order management  
-**Notes:** -
+## Step 4 - 2026-05-03 - [x] COMPLETE
+**Status:** ✅ COMPLETE  
+**What Was Built:**
+- `src/mocks/cart.ts` — Mock cart data and summary calculation logic
+- `src/app/(renter)/cart/page.tsx` — S-14 Cart: Item list, summary, and checkout navigation
+- `src/app/(renter)/checkout/page.tsx` — S-11, S-12, S-13: 3-step checkout flow (Delivery, Address, Payment)
+- `src/app/(renter)/checkout/success/page.tsx` — S-06 Variant: Booking confirmation with next steps
+- **Components**: Step indicators, delivery method selector, payment plan cards, address form, payment method grid
+**Time Spent:** ~1 session  
+**Issues Encountered:** Environment issues (reinstalled node_modules, cleared .next cache).  
+**Next Step:** Step 5 — Order Management  
+**Notes:** Checkout flow is fully functional with mock data. Total price calculation includes rent + deposit + delivery.
+
 
 ---
 
